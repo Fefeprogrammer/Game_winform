@@ -29,15 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.Shoot = new System.Windows.Forms.PictureBox();
             this.Ground = new System.Windows.Forms.PictureBox();
             this.Inimigo = new System.Windows.Forms.PictureBox();
             this.Player = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.Shoot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Inimigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player)).BeginInit();
             this.SuspendLayout();
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 3000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // Shoot
+            // 
+            this.Shoot.Image = global::Game_winform.Properties.Resources.Shoot;
+            this.Shoot.Location = new System.Drawing.Point(375, 294);
+            this.Shoot.Name = "Shoot";
+            this.Shoot.Size = new System.Drawing.Size(18, 35);
+            this.Shoot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Shoot.TabIndex = 3;
+            this.Shoot.TabStop = false;
             // 
             // Ground
             // 
@@ -70,21 +91,13 @@
             this.Player.TabStop = false;
             this.Player.Click += new System.EventHandler(this.Player_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 3000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Interval = 3000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
             // Enemy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(800, 475);
+            this.Controls.Add(this.Shoot);
             this.Controls.Add(this.Ground);
             this.Controls.Add(this.Inimigo);
             this.Controls.Add(this.Player);
@@ -92,6 +105,7 @@
             this.Text = "Game";
             this.Load += new System.EventHandler(this.Enemy_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.Shoot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Inimigo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player)).EndInit();
@@ -106,6 +120,7 @@
         private System.Windows.Forms.PictureBox Ground;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.PictureBox Shoot;
     }
 }
 

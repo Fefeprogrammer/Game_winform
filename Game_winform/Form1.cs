@@ -48,6 +48,11 @@ namespace Game_winform
                 Player.Location = new Point(Player.Location.X, Player.Location.Y + 100);
             }
 
+            if(e.KeyCode == Keys.Control)
+            {
+                Shoot.Visible = true;
+            }
+
         }
 
         private void tb_velocidade_Enter(object sender, EventArgs e)
@@ -63,15 +68,18 @@ namespace Game_winform
             int valorY = randY.Next(100, 500);
             int valorX = randX.Next(100, 500);
 
-            //Inimigo.Location = new Point(Inimigo.Location.X + valorX, Inimigo.Location.Y + valorY);
             Inimigo.Visible = true;
-            timer2.Enabled = true;
+            Inimigo.Location = new Point(Inimigo.Location.X, Inimigo.Location.Y + 15);
+
+            //Inimigo.Location = new Point(Inimigo.Location.X + valorX, Inimigo.Location.Y + valorY);
+            //timer2.Enabled = true;
         }
 
         private void Enemy_Load(object sender, EventArgs e)
         {
             Inimigo.Visible = false;
             timer1.Enabled = true;
+            Shoot.Visible = false;
         }
 
         private void Player_Click(object sender, EventArgs e)
