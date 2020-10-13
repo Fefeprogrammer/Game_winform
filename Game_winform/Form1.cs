@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Game_winform.Classes;
 
 namespace Game_winform
 {
     public partial class Enemy : Form
     {
         public int speed = 15;
+        public int speedEnemy = 10;
+        Moviment moviment = new Moviment();
+        Collision colid = new Collision();
 
         public Enemy()
         {
@@ -23,34 +27,33 @@ namespace Game_winform
         {
             if(e.KeyCode == Keys.Up)
             {
-                Player.Location = new Point(Player.Location.X, Player.Location.Y - speed);
+                moviment.Up(Player, speed);
             }
 
             if(e.KeyCode == Keys.Down)
             {
-                Player.Location = new Point(Player.Location.X, Player.Location.Y + speed);
+                moviment.Down(Player, speed);
             }
 
             if(e.KeyCode == Keys.Right)
             {
-                Player.Location = new Point(Player.Location.X + speed, Player.Location.Y);
+                moviment.Right(Player, speed);
             }
 
             if(e.KeyCode == Keys.Left)
             {
-                Player.Location = new Point(Player.Location.X - speed, Player.Location.Y);
+                moviment.Left(Player, speed);
             }
 
-            if(e.KeyCode == Keys.W)
-            {
-               
-                Player.Location = new Point(Player.Location.X, Player.Location.Y - 100);
-                Player.Location = new Point(Player.Location.X, Player.Location.Y + 100);
-            }
-
-            if(e.KeyCode == Keys.Control)
+            if(e.KeyCode == Keys.C)
             {
                 Shoot.Visible = true;
+                timer2.Enabled = true;
+            }
+
+            if(Shoot.Location.Y == limite_top.Location.Y)
+            {
+                Shoot.Location = new Point(Shoot.Location.X, Shoot.Location.Y - 0);
             }
 
         }
@@ -62,23 +65,31 @@ namespace Game_winform
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Random randX = new Random();
-            Random randY = new Random();
-
-            int valorY = randY.Next(100, 500);
-            int valorX = randX.Next(100, 500);
-
             Inimigo.Visible = true;
-            Inimigo.Location = new Point(Inimigo.Location.X, Inimigo.Location.Y + 15);
+            moviment.Right(Inimigo, speedEnemy);
 
-            //Inimigo.Location = new Point(Inimigo.Location.X + valorX, Inimigo.Location.Y + valorY);
-            //timer2.Enabled = true;
+            if(Inimigo.Location.X >= 600)
+            {
+                moviment.Left(Inimigo, speedEnemy);
+            }
+
+            if(Inimigo.Location.X <= 0)
+            {
+                moviment.Right(Inimigo, speedEnemy);
+            }
+
+            /*if(Collision.Coll(Inimigo, limite_right) == true)
+            {
+                moviment.Left(Inimigo, speedEnemy);
+                MessageBox.Show("Colidiu");
+            }*/
         }
 
         private void Enemy_Load(object sender, EventArgs e)
         {
             Inimigo.Visible = false;
             timer1.Enabled = true;
+            Shoot.Location = Player.Location;
             Shoot.Visible = false;
         }
 
@@ -89,8 +100,23 @@ namespace Game_winform
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            Inimigo.Visible = false;
-            timer1.Enabled = true;
+            Shoot.Location = new Point(Shoot.Location.X, Shoot.Location.Y - speed);
+            
+          
         }
+
+        private void PositionShoot()
+        {
+            Shoot.Location = Player.Location;
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            PositionShoot();
+        }
+
+       
+
+        
     }
 }

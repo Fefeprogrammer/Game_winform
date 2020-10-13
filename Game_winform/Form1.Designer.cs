@@ -35,10 +35,17 @@
             this.Ground = new System.Windows.Forms.PictureBox();
             this.Inimigo = new System.Windows.Forms.PictureBox();
             this.Player = new System.Windows.Forms.PictureBox();
+            this.limite_top = new System.Windows.Forms.PictureBox();
+            this.limite_right = new System.Windows.Forms.PictureBox();
+            this.limite_left = new System.Windows.Forms.PictureBox();
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Shoot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Inimigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.limite_top)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.limite_right)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.limite_left)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -47,7 +54,7 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 3000;
+            this.timer2.Interval = 10;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Shoot
@@ -91,12 +98,44 @@
             this.Player.TabStop = false;
             this.Player.Click += new System.EventHandler(this.Player_Click);
             // 
+            // limite_top
+            // 
+            this.limite_top.Location = new System.Drawing.Point(0, 0);
+            this.limite_top.Name = "limite_top";
+            this.limite_top.Size = new System.Drawing.Size(799, 32);
+            this.limite_top.TabIndex = 4;
+            this.limite_top.TabStop = false;
+            // 
+            // limite_right
+            // 
+            this.limite_right.Location = new System.Drawing.Point(0, 0);
+            this.limite_right.Name = "limite_right";
+            this.limite_right.Size = new System.Drawing.Size(37, 411);
+            this.limite_right.TabIndex = 5;
+            this.limite_right.TabStop = false;
+            // 
+            // limite_left
+            // 
+            this.limite_left.Location = new System.Drawing.Point(764, 38);
+            this.limite_left.Name = "limite_left";
+            this.limite_left.Size = new System.Drawing.Size(35, 388);
+            this.limite_left.TabIndex = 6;
+            this.limite_left.TabStop = false;
+            // 
+            // timer3
+            // 
+            this.timer3.Interval = 10;
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
             // Enemy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(800, 475);
+            this.Controls.Add(this.limite_left);
+            this.Controls.Add(this.limite_right);
+            this.Controls.Add(this.limite_top);
             this.Controls.Add(this.Shoot);
             this.Controls.Add(this.Ground);
             this.Controls.Add(this.Inimigo);
@@ -109,6 +148,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Inimigo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.limite_top)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.limite_right)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.limite_left)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -121,6 +163,10 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.PictureBox Shoot;
+        private System.Windows.Forms.PictureBox limite_top;
+        private System.Windows.Forms.PictureBox limite_right;
+        private System.Windows.Forms.PictureBox limite_left;
+        private System.Windows.Forms.Timer timer3;
     }
 }
 
